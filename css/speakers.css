@@ -1,0 +1,29 @@
+.center{
+  width: 70%;
+  margin:0
+  auto;
+}
+
+.center_svg{
+  width: 25%;
+  margin:0
+  auto;
+}
+
+.d3-tip{
+  background-color: white !important;
+  opacity: 0.7 !important;
+
+}
+
+#svgVisualizeSpeachs{
+  margin-top: 100px;
+  margin-left: 100px
+}
+
+#svgVisualizeWords{
+  margin-top: 100px;
+  margin-left: 100px
+}
+
+.circle
