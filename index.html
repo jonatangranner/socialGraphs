@@ -8,16 +8,20 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <meta name="description" content="" />
 <title>Header Resize On Scroll with Animations</title>
-    
+
 <!-- css -->
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,400italic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/style.css" />
-    
+<link rel="stylesheet" href="css/switch.css" />
+
+
 <!-- js -->
 <script src="js/classie.js"></script>
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/scroll.js"></script>
+<script src="./node_modules/d3/build/d3.min.js"></script>
+<script src="./node_modules/d3-tip/index.js"></script>
 <script>
     function init() {
         window.addEventListener('scroll', function(e){
@@ -53,7 +57,7 @@
         <h1 id="logo">
             <a href="#wrapper">Social graphs 2016</a>
         </h1>
-        
+
         <nav class="navright">
             <a href="#network">Network</a>
             <a href="#terms">Terms</a>
@@ -90,7 +94,7 @@
     </div>
 </div><!-- #main -->
 
-<div class="parallax"></div>
+<div class="parallaxPol"></div>
 
 <div id="main">
     <div id="content">
@@ -99,13 +103,27 @@
                 <h1>How are politicians connection if we look at what they say?</h1>
                 <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
                 <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
-                <p>
-                    <a href="http://www.callmenick.com/tutorials/create-an-animated-resizing-header-on-scroll">&laquo; Go back to this tutorial?</a><br>
-                    <a href="http://www.callmenick.com/tutorials">&laquo; Go back to all tutorials?</a>
-                </p>
             </div>
         </section>
-        <section class="color" id="terms">
+        <section class="color" id="tweets">
+            <div class="container">
+                <h1>And how they tweet</h1>
+                <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
+                <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
+                <svg width="1200" height="600"></svg>
+                <div style="margin: 0 auto; width: 200px">
+                  <p style="float:left">Community</p>
+                  <label class="switch" style="margin-left: 8px">
+                    <input type="checkbox" onchange="toggleCheckbox(this)">
+                    <div class="slider round"></div>
+                  </label>
+                  <p style="float:right">Party</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="parallaxBoring"></div>
+        <section class="container" id="terms">
             <div class="container">
                 <h1>What are the important terms in politics?</h1>
                 <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
@@ -131,4 +149,5 @@
 
 
 </body>
+<script src="js/graphs.js"></script>
 </html>
