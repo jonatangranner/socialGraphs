@@ -9,9 +9,12 @@ var simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
 
+var nodesFileName = ""
+var edgesFilesName = ""
+
 function toggleCheckbox(element){
-  d3.json("../assets/nodes.json", function(error, nodes) {
-    d3.json("../assets/edges.json", function(error, edges) {
+  d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
+    d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
 
       if(element.checked){
         party_color()
@@ -24,8 +27,8 @@ function toggleCheckbox(element){
 
 function toggleInDegree(element){
 
-  d3.json("../assets/nodes.json", function(error, nodes) {
-    d3.json("../assets/edges.json", function(error, edges) {
+  d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
+    d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
 
         if(element.checked){
           svg.selectAll("circle")   // change the line
@@ -37,11 +40,20 @@ function toggleInDegree(element){
     });
   });
 }
+
+function changeNetwork(element){
+  svg.selectAll("g").remove()
+  if(!element.checked){
+    createGraph("nodes.json","edges.json")
+  }else{
+    createGraph("nodesParliament.json","edgesParliament.json")
+  }
+}
 function community_color()
 {
       // Get the data again
-      d3.json("../assets/nodes.json", function(error, nodes) {
-        d3.json("../assets/edges.json", function(error, edges) {
+      d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
+        d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
 
         // Make the changes
             svg.selectAll("circle")   // change the line
@@ -53,8 +65,8 @@ function community_color()
 function party_color()
 {
       // Get the data again
-      d3.json("../assets/nodes.json", function(error, nodes) {
-        d3.json("../assets/edges.json", function(error, edges) {
+      d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
+        d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
 
         // Make the changes
             svg.selectAll("circle")   // change the line
@@ -66,8 +78,8 @@ function party_color()
 
 function nodeSize(choice)
 {
-  d3.json("../assets/nodes.json", function(error, nodes) {
-    d3.json("../assets/edges.json", function(error, edges) {
+  d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
+    d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
 
       var size = 8
 
@@ -144,55 +156,61 @@ function get_party_color(party){
   }
 }
 
-d3.json("../assets/nodes.json", function(error, nodes) {
-  d3.json("../assets/edges.json", function(error, edges) {
 
-    if (error) throw error;
-    var link = svg.append("g")
-        .attr("class", "line")
-      .selectAll("line")
-      .data(edges)
-      .enter().append("line")
-        .attr("stroke-width", function(d) { return Math.sqrt(d.value); })
-        .attr("stroke","#FFFFFF")
-        .attr("opacity","0.3")
+function createGraph(nodeName, edgeName){
+  this.edgesFilesName = edgeName
+  this.nodesFileName = nodeName
+  d3.json("../assets/"+nodeName, function(error, nodes) {
+    d3.json("../assets/"+edgeName, function(error, edges) {
+
+      if (error) throw error;
+      var link = svg.append("g")
+          .attr("class", "line")
+        .selectAll("line")
+        .data(edges)
+        .enter().append("line")
+          .attr("stroke-width", function(d) { return Math.sqrt(d.value); })
+          .attr("stroke","#FFFFFF")
+          .attr("opacity","0.3")
 
 
-    var node = svg.append("g")
-        .attr("class", "nodes")
-      .selectAll("circle")
-      .data(nodes)
-      .enter().append("circle")
-        .attr("r", function(d) { return 15 })
-        .attr("fill", function(d) { return color(d.community); })
-        .call(d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended));
+      var node = svg.append("g")
+          .attr("class", "nodes")
+        .selectAll("circle")
+        .data(nodes)
+        .enter().append("circle")
+          .attr("r", function(d) { return 15 })
+          .attr("fill", function(d) { return color(d.community); })
+          .call(d3.drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended));
 
-    node.append("title")
-        .text(function(d) { return d.id; });
+      node.append("title")
+          .text(function(d) { return d.id; });
 
-    simulation
-        .nodes(nodes)
-        .on("tick", ticked);
+      simulation
+          .nodes(nodes)
+          .on("tick", ticked);
 
-    simulation.force("link")
-        .links(edges);
+      simulation.force("link")
+          .links(edges);
 
-    function ticked() {
-      link
-          .attr("x1", function(d) { return d.source.x; })
-          .attr("y1", function(d) { return d.source.y; })
-          .attr("x2", function(d) { return d.target.x; })
-          .attr("y2", function(d) { return d.target.y; });
+      function ticked() {
+        link
+            .attr("x1", function(d) { return d.source.x; })
+            .attr("y1", function(d) { return d.source.y; })
+            .attr("x2", function(d) { return d.target.x; })
+            .attr("y2", function(d) { return d.target.y; });
 
-      node
-          .attr("cx", function(d) { return d.x; })
-          .attr("cy", function(d) { return d.y; });
-    }
+        node
+            .attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; });
+      }
+    });
   });
-});
+}
+createGraph("nodes.json","edges.json")
 
 function dragstarted(d) {
   if (!d3.event.active) simulation.alphaTarget(0.9).restart();

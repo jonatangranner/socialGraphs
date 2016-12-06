@@ -116,14 +116,22 @@
                   <div style="margin: 0 auto; width: 400px; overflow:hidden; height:600px">
                     <div style="width:250px; display:block">
                       <p style="float:left">Community</p>
-                      <label class="switch" style="margin-left: 30px">
+                      <label class="switch" style="margin-left: 60px">
                         <input type="checkbox" onchange="toggleCheckbox(this)">
                         <div class="slider round"></div>
                       </label>
-                      <p style="float:right">Party</p>
+                      <p style="float:right;margin-right: -8px;">Party</p>
                     </div>
-                    <div style="width:250px">
-                      <p style="margin-left:-84px; float:left">Node size</p>
+                    <div style="width:400px; display:block;">
+                      <p style="margin-left:-82px; float:left">Retweet network</p>
+                      <label class="switch" style="margin-left: 20px">
+                        <input type="checkbox" onchange="changeNetwork(this)">
+                        <div class="slider round"></div>
+                      </label>
+                      <p style="float:right; margin-right:40px">Parliament meeting</p>
+                    </div>
+                    <div style="width:250px; height:50px">
+                      <p style="margin-left: -125px;margin-top:20px;float:left;">Node size</p>
 
                       <div class="dropdown" style="width:160px">
                         <button onclick="myFunction()" id="dropbtn" class="dropbtn">Static</button>
