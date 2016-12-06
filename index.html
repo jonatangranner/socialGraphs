@@ -22,6 +22,7 @@
 <script src="js/scroll.js"></script>
 <script src="./node_modules/d3/build/d3.min.js"></script>
 <script src="./node_modules/d3-tip/index.js"></script>
+
 <script>
     function init() {
         window.addEventListener('scroll', function(e){
@@ -110,14 +111,37 @@
                 <h1>And how they tweet</h1>
                 <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
                 <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
-                <svg width="1200" height="600"></svg>
-                <div style="margin: 0 auto; width: 200px">
-                  <p style="float:left">Community</p>
-                  <label class="switch" style="margin-left: 8px">
-                    <input type="checkbox" onchange="toggleCheckbox(this)">
-                    <div class="slider round"></div>
-                  </label>
-                  <p style="float:right">Party</p>
+                <div>
+                  <svg width="800" height="600" style="float:left"></svg>
+                  <div style="margin: 0 auto; width: 400px; overflow:hidden; height:600px">
+                    <div style="width:250px; display:block">
+                      <p style="float:left">Community</p>
+                      <label class="switch" style="margin-left: 30px">
+                        <input type="checkbox" onchange="toggleCheckbox(this)">
+                        <div class="slider round"></div>
+                      </label>
+                      <p style="float:right">Party</p>
+                    </div>
+                    <div style="width:250px">
+                      <p style="margin-left:-84px; float:left">Node size</p>
+
+                      <div class="dropdown" style="width:160px">
+                        <button onclick="myFunction()" id="dropbtn" class="dropbtn">Static</button>
+                        <div id="myDropdown" class="dropdown-content">
+                          <a onclick="nodeSize('Static')">Static</a>
+                          <a onclick="nodeSize('In degree')">In degree</a>
+                          <a onclick="nodeSize('Out degree')">Out degree</a>
+                          <a onclick="nodeSize('Betweenes centrality')">Betweenes centrality</a>
+                          <a onclick="nodeSize('In degree eigenvector centrality')">In degree eigenvector centrality</a>
+                          <a onclick="nodeSize('Out degree eignevector centrality')">Out degree eignevector centrality</a>
+                        </div>
+                      </div><!--
+                      <label class="switch" style="margin-left: 8px">
+                        <input type="checkbox" onchange="toggleInDegree(this)">
+                        <div class="slider round"></div>
+                      </label>-->
+                    </div>
+                  </div>
                 </div>
             </div>
         </section>

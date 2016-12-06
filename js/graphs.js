@@ -10,13 +10,33 @@ var simulation = d3.forceSimulation()
     .force("center", d3.forceCenter(width / 2, height / 2));
 
 function toggleCheckbox(element){
-  if(element.checked){
-    party_color()
-  }else{
-    community_color()
-  }
+  d3.json("../assets/nodes.json", function(error, nodes) {
+    d3.json("../assets/edges.json", function(error, edges) {
+
+      if(element.checked){
+        party_color()
+      }else{
+        community_color()
+      }
+  });
+});
 }
 
+function toggleInDegree(element){
+
+  d3.json("../assets/nodes.json", function(error, nodes) {
+    d3.json("../assets/edges.json", function(error, edges) {
+
+        if(element.checked){
+          svg.selectAll("circle")   // change the line
+            .attr("r", function(d) { return (d.inDegree+d.outDegree)/5})
+        }else{
+          svg.selectAll("circle")   // change the line
+            .attr("r", function(d) { return 8})
+        }
+    });
+  });
+}
 function community_color()
 {
       // Get the data again
@@ -43,8 +63,46 @@ function party_color()
       });
 }
 
+
+function nodeSize(choice)
+{
+  d3.json("../assets/nodes.json", function(error, nodes) {
+    d3.json("../assets/edges.json", function(error, edges) {
+
+      var size = 8
+
+      if(choice=='In degree')
+      {
+        svg.selectAll("circle")   // change the line
+          .attr("r", function(d) { return (d.inDegree)/(2.5)})
+      }else if(choice=='Out degree')
+      {
+        svg.selectAll("circle")   // change the line
+          .attr("r", function(d) { return (d.outDegree)/(2.5)})
+      }else if(choice=='Betweenes centrality')
+      {
+        svg.selectAll("circle")   // change the line
+          .attr("r", function(d) { return (d.betweenC)*(500)})
+      }else if(choice=='In degree eigenvector centrality')
+      {
+        svg.selectAll("circle")   // change the line
+          .attr("r", function(d) { return (d.evcIn)*100})
+      }else if(choice=='Out degree eignevector centrality')
+      {
+        svg.selectAll("circle")   // change the line
+          .attr("r", function(d) { return (d.evcOut)*100})
+      }else{
+        svg.selectAll("circle")   // change the line
+          .attr("r", function(d) { return (8)})
+      }
+    });
+  });
+
+  var btn = document.getElementById("dropbtn")
+  btn.innerText = choice
+}
+
 function get_party_color(party){
-  console.log(party)
   if(party == "Siumut"){
     return "#6347C0"
   }else if(party == "Konservative"){
@@ -93,7 +151,7 @@ d3.json("../assets/nodes.json", function(error, nodes) {
       .selectAll("circle")
       .data(nodes)
       .enter().append("circle")
-        .attr("r", 8)
+        .attr("r", function(d) { return 8 })
         .attr("fill", function(d) { return color(d.community); })
         .call(d3.drag()
             .on("start", dragstarted)
@@ -139,4 +197,25 @@ function dragended(d) {
   if (!d3.event.active) simulation.alphaTarget(0);
   d.fx = null;
   d.fy = null;
+}
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
 }
