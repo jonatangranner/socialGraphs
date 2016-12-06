@@ -5,7 +5,7 @@ var svg = d3.select("svg"),
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(75))
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
 
@@ -32,7 +32,7 @@ function toggleInDegree(element){
             .attr("r", function(d) { return (d.inDegree+d.outDegree)/5})
         }else{
           svg.selectAll("circle")   // change the line
-            .attr("r", function(d) { return 8})
+            .attr("r", function(d) { return 12})
         }
     });
   });
@@ -73,27 +73,39 @@ function nodeSize(choice)
 
       if(choice=='In degree')
       {
-        svg.selectAll("circle")   // change the line
+        svg.selectAll("circle")
+        .transition()
+        .duration(2000)   // change the line
           .attr("r", function(d) { return (d.inDegree)/(2.5)})
       }else if(choice=='Out degree')
       {
-        svg.selectAll("circle")   // change the line
+        svg.selectAll("circle")
+        .transition()
+        .duration(2000)  // change the line
           .attr("r", function(d) { return (d.outDegree)/(2.5)})
       }else if(choice=='Betweenes centrality')
       {
-        svg.selectAll("circle")   // change the line
+        svg.selectAll("circle")
+        .transition()
+        .duration(2000)     // change the line
           .attr("r", function(d) { return (d.betweenC)*(500)})
       }else if(choice=='In degree eigenvector centrality')
       {
-        svg.selectAll("circle")   // change the line
+        svg.selectAll("circle")
+        .transition()
+        .duration(2000)     // change the line
           .attr("r", function(d) { return (d.evcIn)*100})
       }else if(choice=='Out degree eignevector centrality')
       {
-        svg.selectAll("circle")   // change the line
+        svg.selectAll("circle")
+        .transition()
+        .duration(2000)     // change the line
           .attr("r", function(d) { return (d.evcOut)*100})
       }else{
-        svg.selectAll("circle")   // change the line
-          .attr("r", function(d) { return (8)})
+        svg.selectAll("circle")
+        .transition()
+        .duration(2000)     // change the line
+          .attr("r", function(d) { return (12)})
       }
     });
   });
@@ -103,27 +115,27 @@ function nodeSize(choice)
 }
 
 function get_party_color(party){
-  if(party == "Siumut"){
+  if(party == "Siumut" || party=="SIU"){
     return "#6347C0"
-  }else if(party == "Konservative"){
+  }else if(party == "Konservative" || party == "KF"){
     return "#0E3D02"
-  }else  if(party == "Enhedslisten"){
+  }else  if(party == "Enhedslisten" || party == "EL"){
       return "#5E001D"//"#9B002F"
-  }else  if(party == "Alternativet"){
+  }else  if(party == "Alternativet" || party == "ALT"){
       return "#42FF1A"
-  }else  if(party == "Venstre"){
+  }else  if(party == "Venstre" || party == "V"){
       return "#0780FF"
-  }else  if(party == "Radikale"){
+  }else  if(party == "Radikale" || party == "RV"){
       return "#FF00AC"
-  }else  if(party == "Inuit Ataqatigiit"){
+  }else  if(party == "Inuit Ataqatigiit" || party == "IA"){
       return "#FF0000"
-  }else  if(party == "Socialdemokraterne"){
+  }else  if(party == "Socialdemokraterne" || party == "S"){
       return "#840000"
-  }else  if(party == "Republikanerne"){
+  }else  if(party == "Republikanerne" || party == "T"){
       return "black"
-  }else  if(party == "Liberal Alliance"){
+  }else  if(party == "Liberal Alliance" || party == "LA"){
       return "#94B4FF"
-  }else  if(party == "Dansk Folkeparti"){
+  }else  if(party == "Dansk Folkeparti" || party == "DF"){
       return "#08276E"
   }else if(party == "SF"){
     return "#FF8686"
@@ -151,7 +163,7 @@ d3.json("../assets/nodes.json", function(error, nodes) {
       .selectAll("circle")
       .data(nodes)
       .enter().append("circle")
-        .attr("r", function(d) { return 8 })
+        .attr("r", function(d) { return 15 })
         .attr("fill", function(d) { return color(d.community); })
         .call(d3.drag()
             .on("start", dragstarted)
@@ -183,7 +195,7 @@ d3.json("../assets/nodes.json", function(error, nodes) {
 });
 
 function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.6).restart();
+  if (!d3.event.active) simulation.alphaTarget(0.9).restart();
   d.fx = d.x;
   d.fy = d.y;
 }
