@@ -7,17 +7,20 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <meta name="description" content="" />
-<title>Header Resize On Scroll with Animations</title>
+<title>Networks in Danish Politics  |  Social Graphs 2016</title>
     
 <!-- css -->
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,400italic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/twitter-quotes.css">
     
 <!-- js -->
 <script src="js/classie.js"></script>
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/scroll.js"></script>
+<script src="js/quotes.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
 <script>
     function init() {
         window.addEventListener('scroll', function(e){
@@ -69,13 +72,18 @@
                 <p>Emotions are everywhere. Especially in politics.<br>
                 Recently, The Oxford Dictionaries announced that its Word of the Year 2016 is <b>post-truth</b>.<br>
                 </p>
-                <h2>Post-truth:</h2>
-                <blockquote><p>‘relating to or denoting circumstances in which objective facts are less influential in shaping public opinion than appeals to emotion and personal belief’</p></blockquote>
+                <img src="img/woty.png" id="woty">
+                
+                <blockquote><p>‘relating to or denoting circumstances in which objective facts are less influential <br>in shaping public opinion than appeals to emotion and personal belief’</p>
+                <br><span>- 'Post-truth' according to The Oxford Dictionaries</span></blockquote>
                 <p>The frequent use of a word such as 'post-truth' indicates that people seem to think that politics are increasingly prefering emotions to fact. Pathos to logos. But is this true? We investigated how emotions are showing in the Danish parliament and on Danish politicians' Twitter feeds.</p>
-                <p>
-                    <a href="#sentiments">&laquo; Sentiment Analysis</a><br>
-                    <a href="#network">&laquo; Network Analysis</a><br>
-                    <a href="#terms">&laquo; Frequent Analysis</a>
+                <p class="contents">
+                    <a href="#sentiments"><img src="img/smile.png"><br>
+                    &rarr; Sentiment Analysis</a><br><br>
+                    <a href="#network"><img src="img/share.png"><br>
+                    &rarr; Network Analysis</a><br><br>
+                    <a href="#terms"><img src="img/chat.png"><br>
+                    &rarr; Frequent Term Analysis</a>
                 </p>
             </div>
         </section>
@@ -83,7 +91,220 @@
             <div class="container">
                 <h1>How are emotions showing in the Danish parliament?</h1>
                 <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
+                <img src="img/talks-over-time.png" class="plot">
                 <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
+                <h1>How are emotions showing on Danish politicians' Twitter feeds?</h1>
+                <p></p>
+
+                <div class="cd-testimonials-wrapper cd-container positive">
+                    <ul class="cd-testimonials">
+                        <li>
+                            <p>I dag er det DFs fødselsdag hurra hurra hurra
+                            Vi sikkert mange gaver får
+                            Som vi har ønsket os i år
+                            For 21 år er vel en gave værd
+                            #dkpol</p>
+                            <div class="cd-author">
+                                <img src="img/Morten_Marinus.jpg" alt="Morten Marinus">
+                                <ul class="cd-author-info">
+                                    <li>Morten Marinus</li>
+                                    <li>DF</li>
+                                </ul>
+                                <span class="cd-number">1.</span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <p>"Messerschmidt har aldrig sat sig ind i, hvordan EU fungerer..." (citat Anna Rosbach i Berlingske). Ha-ha-ha-ha-ha-ha-ha-ha-ha-ha..! #dkpol</p>
+                            <div class="cd-author">
+                                <img src="img/Soeren_Espersen.jpg" alt="Søren Espersen">
+                                <ul class="cd-author-info">
+                                    <li>Søren Espersen</li>
+                                    <li>DF</li>
+                                    <span class="cd-number">2.</span>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                            <p>Hej @FradragNu - Det er mig der takker for super god inspiration til iværksætterpolitik hos @Spolitik - held og lykke med fradrag.nu #dkpol</p>
+                            <div class="cd-author">
+                                <img src="img/Thomas_Jensen.jpg" alt="Thomas Jensen">
+                                <ul class="cd-author-info">
+                                    <li>Thomas Jensen</li>
+                                    <li>Socialdemokraterne</li>
+                                    <span class="cd-number">3.</span>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                    </ul> <!-- cd-testimonials -->
+
+                    <a href="#0" class="cd-see-all">See all</a>
+                </div> <!-- cd-testimonials-wrapper -->
+
+                <div class="cd-testimonials-wrapper cd-container negative">
+                    <ul class="cd-testimonials">
+                        <li>
+                            <p>Fuck fuck fuck Andrew er ikke videre. Øv!!! En voksen mand m rock under vesten - og så kunne han synge. Fuck! #xfactordr</p>
+                            <div class="cd-author">
+                                <img src="img/pia-olsen.jpg" alt="Pia Olsen Dyhr">
+                                <ul class="cd-author-info">
+                                    <li>Pia Olsen Dyhr</li>
+                                    <li>SF</li>
+                                </ul>
+                                <span class="cd-number">1.</span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <p>WTF? @sorenpind kobler skærpet straf for voldtægt og skærpet straf for falsk anklage #usagligt #sexisme #dkpol https://t.co/eNbeEtoH5x</p>
+                            <div class="cd-author">
+                                <img src="img/pernille-skipper.jpg" alt="Pernille Skipper">
+                                <ul class="cd-author-info">
+                                    <li>Pernille Skipper</li>
+                                    <li>Enhedslisten</li>
+                                    <span class="cd-number">2.</span>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                            <p>@ElisabethMJ @Kvindemuseet @finanslov øv, øv, øv, øv og sgu altså. Helt forkert. @rasmusnordqvist har du set det her?</p>
+                            <div class="cd-author">
+                                <img src="img/uffe.jpg" alt="Uffe Elbæk">
+                                <ul class="cd-author-info">
+                                    <li>Uffe Elbæk</li>
+                                    <li>Alternativet</li>
+                                    <span class="cd-number">3.</span>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                    </ul> <!-- cd-testimonials -->
+
+                    <a href="#0" class="cd-see-all">See all</a>
+                </div> <!-- cd-testimonials-wrapper -->
+
+                <div class="cd-testimonials-all">
+                    <div class="cd-testimonials-all-wrapper">
+                        <ul>
+                            <li class="cd-testimonials-item">
+                            <p>I dag er det DFs fødselsdag hurra hurra hurra
+                            Vi sikkert mange gaver får
+                            Som vi har ønsket os i år
+                            For 21 år er vel en gave værd
+                            #dkpol</p>
+                            <div class="cd-author">
+                                <img src="img/Morten_Marinus.jpg" alt="Morten Marinus">
+                                <ul class="cd-author-info">
+                                    <li>Morten Marinus</li>
+                                    <li>DF</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="cd-testimonials-item">
+                            <p>"Messerschmidt har aldrig sat sig ind i, hvordan EU fungerer..." (citat Anna Rosbach i Berlingske). Ha-ha-ha-ha-ha-ha-ha-ha-ha-ha..! #dkpol</p>
+                            <div class="cd-author">
+                                <img src="img/Soeren_Espersen.jpg" alt="Søren Espersen">
+                                <ul class="cd-author-info">
+                                    <li>Søren Espersen</li>
+                                    <li>DF</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="cd-testimonials-item">
+                            <p>Hej @FradragNu - Det er mig der takker for super god inspiration til iværksætterpolitik hos @Spolitik - held og lykke med fradrag.nu #dkpol</p>
+                            <div class="cd-author">
+                                <img src="img/Thomas_Jensen.jpg" alt="Thomas Jensen">
+                                <ul class="cd-author-info">
+                                    <li>Thomas Jensen</li>
+                                    <li>Socialdemokraterne</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="cd-testimonials-item">
+                            <p>@KlausKblog Fantastisk! Super godt gået!! Jeg bliver glad i låget over folk som os.. haha :-)</p>
+                            <div class="cd-author">
+                                <img src="img/Laura_Lindahl.jpg" alt="Laura Lindahl">
+                                <ul class="cd-author-info">
+                                    <li>Laura Lindahl</li>
+                                    <li>LA</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="cd-testimonials-item">
+                            <p>Jeg var enig med HTS i denne del: "Danmark længe leve! Hurra, hurra, hurra!" #ftlive #dkpol</p>
+                            <div class="cd-author">
+                                <img src="img/Merete_Riisager.jpg" alt="Merete Riisager">
+                                <ul class="cd-author-info">
+                                    <li>Merete Riisager</li>
+                                    <li>LA</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="cd-testimonials-item negative">
+                            <p>Fuck fuck fuck Andrew er ikke videre. Øv!!! En voksen mand m rock under vesten - og så kunne han synge. Fuck! #xfactordr</p>
+                            <div class="cd-author">
+                                <img src="img/pia-olsen.jpg" alt="Pia Olsen Dyhr">
+                                <ul class="cd-author-info">
+                                    <li>Pia Olsen Dyhr</li>
+                                    <li>SF</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="cd-testimonials-item negative">
+                            <p>WTF? @sorenpind kobler skærpet straf for voldtægt og skærpet straf for falsk anklage #usagligt #sexisme #dkpol https://t.co/eNbeEtoH5x</p>
+                            <div class="cd-author">
+                                <img src="img/pernille-skipper.jpg" alt="Pernille Skipper">
+                                <ul class="cd-author-info">
+                                    <li>Pernille Skipper</li>
+                                    <li>Enhedslisten</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="cd-testimonials-item negative">
+                            <p>@ElisabethMJ @Kvindemuseet @finanslov øv, øv, øv, øv og sgu altså. Helt forkert. @rasmusnordqvist har du set det her?</p>
+                            <div class="cd-author">
+                                <img src="img/uffe.jpg" alt="Uffe Elbæk">
+                                <ul class="cd-author-info">
+                                    <li>Uffe Elbæk</li>
+                                    <li>Alternativet</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="cd-testimonials-item negative">
+                            <p>Frygtelige nyheder fra Paris- igen. Al den vold, terror og drab på uskyldige  mennesker. Tragisk.</p>
+                            <div class="cd-author">
+                                <img src="img/Jonas_Dahl.jpg" alt="Jonas Dahl">
+                                <ul class="cd-author-info">
+                                    <li>Jonas Dahl</li>
+                                    <li>SF</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="cd-testimonials-item negative">
+                            <p>Voldtægt er aldrig din skyld. Offer skal ikke efterlades med skam og angst for ikke at blive taget alvorligt #dkpol https://t.co/9OgTSdqe08</p>
+                            <div class="cd-author">
+                                <img src="img/Trine_Torp.jpg" alt="Trine Schøning Torp">
+                                <ul class="cd-author-info">
+                                    <li>Trine Schøning Torp</li>
+                                    <li>SF</li>
+                                </ul>
+                            </div>
+                        </li>
+                        </ul>
+                    </div>  <!-- cd-testimonials-all-wrapper -->
+
             </div>
         </section>
         </section>
