@@ -43,11 +43,14 @@ function toggleInDegree(element){
 
 function changeNetwork(element){
   svg.selectAll("g").remove()
+  document.getElementById("comBox").checked = false;
   if(!element.checked){
     createGraph("nodes.json","edges.json")
   }else{
     createGraph("nodesParliament.json","edgesParliament.json")
   }
+  var btn = document.getElementById("dropbtn")
+  btn.innerText = "Static"
 }
 function community_color()
 {
