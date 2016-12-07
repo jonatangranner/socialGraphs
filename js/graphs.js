@@ -20,8 +20,8 @@ function toggleCheckbox(element){
 function community_color()
 {
       // Get the data again
-      d3.json("../assets/nodes.json", function(error, nodes) {
-        d3.json("../assets/edges.json", function(error, edges) {
+      d3.json("assets/nodes.json", function(error, nodes) {
+        d3.json("assets/edges.json", function(error, edges) {
 
         // Make the changes
             svg.selectAll("circle")   // change the line
@@ -33,8 +33,8 @@ function community_color()
 function party_color()
 {
       // Get the data again
-      d3.json("../assets/nodes.json", function(error, nodes) {
-        d3.json("../assets/edges.json", function(error, edges) {
+      d3.json("assets/nodes.json", function(error, nodes) {
+        d3.json("assets/edges.json", function(error, edges) {
 
         // Make the changes
             svg.selectAll("circle")   // change the line
@@ -74,8 +74,8 @@ function get_party_color(party){
   }
 }
 
-d3.json("../assets/nodes.json", function(error, nodes) {
-  d3.json("../assets/edges.json", function(error, edges) {
+d3.json("assets/nodes.json", function(error, nodes) {
+  d3.json("assets/edges.json", function(error, edges) {
 
     if (error) throw error;
     var link = svg.append("g")

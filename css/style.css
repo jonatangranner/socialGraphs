@@ -26,7 +26,7 @@ ol, ul {
   list-style: none; }
 
 blockquote {
-  background: #f9f9f9;
+  background: #0084b4;
   border-left: 10px solid #3cb5f9;
   margin: 1.5em 10px;
   padding: 0.5em 10px;
@@ -48,6 +48,14 @@ blockquote p {
 blockquote span {
   font-style: italic;
   text-align: right;
+}
+
+h1#contenttitle {
+  text-align: center;
+  color: #3cb5f9;
+  font-size: 32px;
+  text-transform: uppercase;
+  padding-bottom: 20px;
 }
 
 

@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/twitter-quotes.css">
 <link rel="stylesheet" href="css/switch.css" />
+<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 
 
 <!-- js -->
@@ -23,9 +25,11 @@
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/scroll.js"></script>
 <script src="js/quotes.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
 <script src="js/jquery.flexslider-min.js"></script>
 <script src="./node_modules/d3/build/d3.min.js"></script>
 <script src="./node_modules/d3-tip/index.js"></script>
+
 <script>
     function init() {
         window.addEventListener('scroll', function(e){
@@ -73,15 +77,8 @@
     <div id="content">
         <section id="one">
             <div class="container">
-                <h1>Introduction</h1>
-                <p>Emotions are everywhere. Especially in politics.<br>
-                Recently, The Oxford Dictionaries announced that its Word of the Year 2016 is <b>post-truth</b>.<br>
-                </p>
-                <img src="img/woty.png" id="woty">
+                <h1 id="contenttitle">Contents</h1>
                 
-                <blockquote><p>‘relating to or denoting circumstances in which objective facts are less influential <br>in shaping public opinion than appeals to emotion and personal belief’</p>
-                <br><span>- 'Post-truth' according to The Oxford Dictionaries</span></blockquote>
-                <p>The frequent use of a word such as 'post-truth' indicates that people seem to think that politics are increasingly prefering emotions to fact. Pathos to logos. But is this true? We investigated how emotions are showing in the Danish parliament and on Danish politicians' Twitter feeds.</p>
                 <p class="contents">
                     <a href="#sentiments"><img src="img/smile.png"><br>
                     &rarr; Sentiment Analysis</a><br><br>
@@ -94,12 +91,19 @@
         </section>
         <section class="color" id="sentiments">
             <div class="container">
-                <h1>How are emotions showing in the Danish parliament?</h1>
-                <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
-                <img src="img/talks-over-time.png" class="plot">
+                <h1>Emotions in politics</h1>
+                <p>Emotions are everywhere. Especially in politics.<br>
+                Recently, The Oxford Dictionaries announced that its Word of the Year 2016 is <b>post-truth</b>.<br>
+                </p>
+                <img src="img/woty.png" id="woty">
+                
+                <blockquote><p>‘relating to or denoting circumstances in which objective facts are less influential <br>in shaping public opinion than appeals to emotion and personal belief’</p>
+                <br><span>- 'Post-truth' according to The Oxford Dictionaries</span></blockquote>
+                <p>The frequent use of a word such as 'post-truth' indicates that people seem to think that politics are increasingly prefering emotions to fact. Pathos to logos. But is this true? We investigated how emotions are showing in the Danish parliament and on Danish politicians' Twitter feeds.</p>
+                <img src="img/plots/talks-over-time.png" class="plot">
                 <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
                 <h1>How are emotions showing on Danish politicians' Twitter feeds?</h1>
-                <p></p>
+                <p>The sentiment averages of politicians own tweets (retweets not counted) was used as a basis for creating lists of top most positive tweets and top most negative tweets.</p>
 
                 <div class="cd-testimonials-wrapper cd-container positive">
                     <ul class="cd-testimonials">
@@ -321,6 +325,72 @@
 <div id="main">
     <div id="content">
         <section>
+        <div class="container">
+                <h1>How about the use of #hashtags on Twitter?</h1>
+                <p>The use of hashtags is an effective way to create, emphasize, or send a message.<br>
+                How do the use of hashtags differ across the political spectrum? Let's have a look at some stats.<br></p>
+                <h2>The most #hashtagging politicians and party</h2>
+                <div class="img-car">
+                    <div class="single-item">
+                        <img src="img/plots/frequent-hashtags.png" alt="">
+                        <p>Most frequently used hashtags by Danish politicians</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/plots/most-hashtags-per-tweet-per-politician.png" alt="">
+                        <p>Most hashtagging Danish politicians</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/plots/most-hashtags-per-tweet-per-party.png" alt="">
+                        <p>Most hashtagging Danish politic party</p>
+                    </div>
+                </div>
+
+                <p>Notice that #dkpol is vastly dominating the distribution of hashtags. Around one third of all tweets by Danish politicians include this hashtag. Several hashtags created by various news media seem to by popular. For example, the top 10 includes #fv15, #ftlive and #tv2valg as popular hashtags.<br><br>
+                But how do the parties actually differ? We can use tfidf to seperate the hashtags of each party and gain knowledge of the unique keywords for each individual party.</p>
+
+                <h2>What do parties say with their #hashtags?</h2>
+                <div class="img-car">
+                    <div class="single-item">
+                        <img src="img/wordcloud/alt.png" alt="">
+                        <p>Alternativet's hashtags (top tfidf as sizes)</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wordcloud/df.png" alt="">
+                        <p>Dansk Folkeparti's hashtags (top tfidf as sizes)</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wordcloud/el.png" alt="">
+                        <p>Enhedslisten's hashtags (top tfidf as sizes)</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wordcloud/kon.png" alt="">
+                        <p>De Konservative's hashtags (top tfidf as sizes)</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wordcloud/la.png" alt="">
+                        <p>Liberal Alliance's hashtags (top tfidf as sizes)</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wordcloud/alt.png" alt="">
+                        <p>Radikale Venstre's hashtags (top tfidf as sizes)</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wordcloud/s.png" alt="">
+                        <p>Socialdemokratiet's hashtags (top tfidf as sizes)</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wordcloud/sf.png" alt="">
+                        <p>Socialistisk Folkeparti's hashtags (top tfidf as sizes)</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wordcloud/v.png" alt="">
+                        <p>Venstre's hashtags (top tfidf as sizes)</p>
+                    </div>
+                </div>
+                <p>The wordsclouds does capture phrases commonly associated with the parties. Examples are Alternativet, 
+                which tends to use hashtags such as #venligrevolution, #elbil, and #nypolitiskkultur, and Dansk Folkeparti, 
+                which include hashtags such as #meredkmindreeu, #grænsekontrol, and #sønderjylland among its defining hashtags.</p><br>
+            </div>
             <div class="container" id="network">
                 <h1>How are politicians connection if we look at what they say?</h1>
                 <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
@@ -369,6 +439,13 @@
 
 </div><!-- /#wrapper -->
 
+<script>
+$(document).ready(function(){
+  $('.img-car').slick({
+
+  });
+});</script>
+<script type="text/javascript" src="js/slick.min.js"></script>
 
 </body>
 <script src="js/graphs.js"></script>
