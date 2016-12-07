@@ -185,7 +185,7 @@ function createGraph(nodeName, edgeName){
         .enter().append("line")
           .attr("stroke-width", 1)
           .attr("stroke","#FFFFFF")
-          //.attr("opacity","0.3")
+          .attr("opacity","0.3")
 
       var node = svg.append("g")
         .attr("class", "nodes")
@@ -193,11 +193,11 @@ function createGraph(nodeName, edgeName){
         .data(nodes)
         .enter().append("circle")
           .attr("r", function(d) { return 15 })
-          .attr("fill", function(d) { return color(d.community); });/*
+          .attr("fill", function(d) { return color(d.community); })
           .call(d3.drag()
               .on("start", dragstarted)
               .on("drag", dragged)
-              .on("end", dragended));*/
+              .on("end", dragended));
 
       node.append("title")
           .text(function(d) { return d.id; });
@@ -226,7 +226,7 @@ function createGraph(nodeName, edgeName){
 createGraph("nodes.json","edges.json")
 
 function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.0).restart();
+  if (!d3.event.active) simulation.alphaTarget(0.5).restart();
   d.fx = d.x;
   d.fy = d.y;
 }
