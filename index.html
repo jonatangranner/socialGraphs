@@ -412,9 +412,18 @@
         </section>
         <section class="color" id="tweets">
             <div class="container">
-                <h1>And how they tweet</h1>
-                <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
-                <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
+                <h1>How are politicians connection if we look at what they say in parliament and how they retweet each other?</h1>
+                <br>
+                <p>
+                  Politicians is heavy users of twitter and the retweet functionality is often used to share the tweets from other politicians.
+                  But how are these retweets connected? Do politician tend to retweet each other more within the same party? Can a party be detected by using the Louvrian
+                  algorithm to detect communities?
+                </p>
+                <p>
+                  When politicians talk in the parliament they often mention each other in different contexts whether they agree or disagree with each other.
+                  How are these politicians connected when it comes to mentioning each other? Are some politicians central for the parliament? do politicians within the same
+                  party mention each other more often than politicians from other parties?
+                </p>
                 <div>
                   <svg id="svg-graph" width="800" height="600" style="float:left"></svg>
                   <div style="margin: 0 auto; width: 400px; overflow:hidden; height:600px">
@@ -443,18 +452,33 @@
                           <a onclick="nodeSize('Static')">Static</a>
                           <a onclick="nodeSize('In degree')">In degree</a>
                           <a onclick="nodeSize('Out degree')">Out degree</a>
-                          <a onclick="nodeSize('Betweenes centrality')">Betweenes centrality</a>
+                          <a onclick="nodeSize('Betweenes centrality')">Betweenness centrality</a>
                           <a onclick="nodeSize('In degree eigenvector centrality')">In degree eigenvector centrality</a>
                           <a onclick="nodeSize('Out degree eignevector centrality')">Out degree eignevector centrality</a>
                         </div>
-                      </div><!--
-                      <label class="switch" style="margin-left: 8px">
-                        <input type="checkbox" onchange="toggleInDegree(this)">
-                        <div class="slider round"></div>
-                      </label>-->
+                      </div>
                     </div>
                   </div>
                 </div>
+                <p>
+                  The Louvrian algorithm does seem to detect 5 different communities, some more distinct than others. This leads us to the previously asked question; do politicians from
+                  the same party tend to retween each other more often and therefore shows the parties as communities in the graph? Coloring the politician nodes with the color
+                  representing their party indicates that the algorithm quiet succesfully managed to find the parties as communities meaning that the politicians do tend to retweet
+                  more within their own party.<br>
+                  Another thing to notice is that both the in and out degree eigenvector centrality is dominant in Socialdemokratiet meaning they often retweet tweets from
+                  politicians that often retweet others and that they often get retweeted by politicians that retweet alot of other politicians. The fact that it appears for both the
+                  in and the out degree eigenvector centrality implies that the politicians in Socialdemokratiet retweet alot and mostly within their own party.
+                </p>
+                <p>
+                  Switching to the parliament graph reveals a new much bigger graph with the three communities found by the Louvrian algorithm represented by colors.
+                  The communities does not seem to be very distinct as they all cluster in one big group. Coloring the politician nodes with color based on their party does not
+                  indicate a connection between politicians from the same party. This means that politicians do not mention each other more often within the same party but rather
+                  mentions other politicians more stochastic.<br>
+                  Looking at the betweenness centrality shows that a few politicians seem to dominate the shortest paths, namely Per Clausen from Enhedslisten seem to have a high
+                  betweenness centrality.<br>
+                  Another interesting thing to notice is the out degree eigenvector centrality for Mogen Lykketoft from Socialdemokratiet. It is extremely high compared to other
+                  politicians meaning that he is mentioning alot of politician who also mention alot of other politicians.
+                </p>
             </div>
         </section>
     </div>

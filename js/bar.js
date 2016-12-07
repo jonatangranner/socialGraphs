@@ -70,7 +70,7 @@ function nodes(){
 d3.csv("assets/SentAvg.csv", function(error, data){
 
   var verticalGuideScale = d3.scaleLinear()
-    .domain([-4, d3.max(data)])
+    .domain([d3.min(data), d3.max(data)])
     .range([400, 0])
 
   var yAxis = d3.axisLeft(y)
@@ -99,7 +99,7 @@ d3.csv("assets/SentAvg.csv", function(error, data){
   }));
 
   x1.domain(ageNames).range([5, x0.bandwidth()]);
-  y.domain([-4, d3.max(data, function(c) {
+  y.domain([-0.006, d3.max(data, function(c) {
     return d3.max(c.ages, function(d) {
       return d.value;
     });
