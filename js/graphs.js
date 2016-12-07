@@ -1,4 +1,4 @@
-var svg = d3.select("svg"),
+var svg = d3.select("#svg-graph"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
@@ -56,13 +56,12 @@ function community_color()
 {
       // Get the data again
       d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
-        d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
-
-        // Make the changes
-            svg.selectAll("circle")   // change the line
-              .attr("fill", function(d) { return color(d.community); })
-            });
-      });
+      d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
+      // Make the changes
+          svg.selectAll("circle")   // change the line
+            .attr("fill", function(d) { return color(d.community); })
+          });
+    });
 }
 
 function party_color()
@@ -70,7 +69,6 @@ function party_color()
       // Get the data again
       d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
         d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
-
         // Make the changes
             svg.selectAll("circle")   // change the line
               .attr("fill", function(d) { return get_party_color(d.party); })
@@ -159,10 +157,9 @@ function get_party_color(party){
   }
 }
 
-
 function createGraph(nodeName, edgeName){
 
-  svg = d3.select("svg"),
+  svg = d3.select("#svg-graph"),
       width = +svg.attr("width"),
       height = +svg.attr("height");
 
@@ -186,8 +183,8 @@ function createGraph(nodeName, edgeName){
         .selectAll("line")
         .data(edges)
         .enter().append("line")
-          //.attr("stroke-width", function(d) { return Math.sqrt(d.value); })
-          //.attr("stroke","#FFFFFF")
+          .attr("stroke-width", 1)
+          .attr("stroke","#FFFFFF")
           //.attr("opacity","0.3")
 
       var node = svg.append("g")
