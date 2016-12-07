@@ -104,10 +104,26 @@ p.contents a {
   
   font-size: 21px;
 }
+#downloads {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  float: right;
+  text-align: center;
+  height: 50px;
+  padding-top: 0px;
+}
 
 a:hover {
   color: #0793e2; }
 
+p#credits {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
 /* =Template
 -------------------------------------------------------------- */
 #wrapper {
@@ -252,6 +268,25 @@ img.plot {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
+img#cloudplot {
+  max-width: 70%;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: -10px;
+}
+.twoplotc{
+  text-align: center;
+}
+
+img#cloudplot.twoplots {
+  max-width: 40%;
+  margin: 0 auto;
+  display: inline-block;
+  padding: 0 5px;
+  margin-bottom: 10px;
+  margin-top: -10px;
+}
 /* =Footer
 -------------------------------------------------------------- */
 /* =Extras
