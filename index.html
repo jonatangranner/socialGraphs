@@ -73,7 +73,7 @@
     </div>
 </header><!-- /header -->
 
-<div id="main">
+<div id="main" class="first_main">
     <div id="content">
         <section id="one">
             <div class="container">
@@ -100,10 +100,16 @@
                 <blockquote><p>‘relating to or denoting circumstances in which objective facts are less influential <br>in shaping public opinion than appeals to emotion and personal belief’</p>
                 <br><span>- 'Post-truth' according to The Oxford Dictionaries</span></blockquote>
                 <p>The frequent use of a word such as 'post-truth' indicates that people seem to think that politics are increasingly prefering emotions to fact. Pathos to logos. But is this true? We investigated how emotions are showing in the Danish parliament and on Danish politicians' Twitter feeds.</p>
-                <img src="img/plots/talks-over-time.png" class="plot">
-                <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
+
+                <h2>Emotions over time</h2>
+                <p>Let's get an overview of the emotional spectrum by looking at the weekly average of emotions on Danish politicians' Twitter and in the parliament:</p>
+
+                <img src="img/plots/sent-time.png" class="plot">
+                <p>The graphs seem to be quite well correlated. It should be noted that the method of calculating the sentiments was to add up positive and negative sentiment values of each word in a text. Averaging the blocks of text makes it more likely for longer text blocks to have extreme values (positive or negative), which is probably why the sentiment of the parliament is generally higher than on twitter.</p>
+
                 <h1>How are emotions showing on Danish politicians' Twitter feeds?</h1>
-                <p>The sentiment averages of politicians own tweets (retweets not counted) was used as a basis for creating lists of top most positive tweets and top most negative tweets.</p>
+                <p>The sentiment averages of politicians own tweets (retweets not counted) was used as a basis for creating lists of top most positive tweets and top most negative tweets.<br>
+                Top 3 positive tweets:</p>
 
                 <div class="cd-testimonials-wrapper cd-container positive">
                     <ul class="cd-testimonials">
@@ -152,6 +158,11 @@
                     <a href="#0" class="cd-see-all">See all</a>
                 </div> <!-- cd-testimonials-wrapper -->
 
+                <h2>DF seems to be the happiest party on Twitter, but...</h2>
+                <p>Søren Espersen's tweet that is ranked as the second happiest in our records is a great example of a quirk when calculating sentiments using a list of labelled words.<br>
+                When reading the tweet as a human, it is obvious that the tweet is sarcastic and not very positive. However, being limited to look at each word, our algorithm count the long string of Ha-ha-ha... as very positive. <br>
+                Now, let's have a look at the top 3 negative tweets:</p>
+
                 <div class="cd-testimonials-wrapper cd-container negative">
                     <ul class="cd-testimonials">
                         <li>
@@ -194,6 +205,9 @@
 
                     <a href="#0" class="cd-see-all">See all</a>
                 </div> <!-- cd-testimonials-wrapper -->
+
+                <p>The most negative tweets ranges from angry, to sad, to ... X-Factor.<br>
+                One interesting observation is the distribution of positive/negative politicians based on their party. The top positive tweets mostly include right-wing politicians, while the top negative tweets only include left-wing politicians.</p>
 
                 <div class="cd-testimonials-all">
                     <div class="cd-testimonials-all-wrapper">
@@ -330,7 +344,7 @@
                 <p>The use of hashtags is an effective way to create, emphasize, or send a message.<br>
                 How do the use of hashtags differ across the political spectrum? Let's have a look at some stats.<br></p>
                 <h2>The most #hashtagging politicians and party</h2>
-                <div class="img-car">
+                <div class="plot-car">
                     <div class="single-item">
                         <img src="img/plots/frequent-hashtags.png" alt="">
                         <p>Most frequently used hashtags by Danish politicians</p>
@@ -344,6 +358,7 @@
                         <p>Most hashtagging Danish politic party</p>
                     </div>
                 </div>
+                <br>
 
                 <p>Notice that #dkpol is vastly dominating the distribution of hashtags. Around one third of all tweets by Danish politicians include this hashtag. Several hashtags created by various news media seem to by popular. For example, the top 10 includes #fv15, #ftlive and #tv2valg as popular hashtags.<br><br>
                 But how do the parties actually differ? We can use tfidf to seperate the hashtags of each party and gain knowledge of the unique keywords for each individual party.</p>
@@ -371,7 +386,7 @@
                         <p>Liberal Alliance's hashtags (top tfidf as sizes)</p>
                     </div>
                     <div class="single-item">
-                        <img src="img/wordcloud/alt.png" alt="">
+                        <img src="img/wordcloud/r.png" alt="">
                         <p>Radikale Venstre's hashtags (top tfidf as sizes)</p>
                     </div>
                     <div class="single-item">
@@ -439,10 +454,174 @@
     </div>
     <div class="parallaxBoring"></div>
         <section class="container" id="terms">
-            <div class="container">
+            <div class="container"><br><br>
                 <h1>What are the important terms in politics?</h1>
-                <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
-                <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
+                <p>Let's have a look at the most important terms in Danish politics throughout the last years.</p>
+
+                <h2>The most important words on Twitter (2009-2016)</h2><br>
+                <div class="cloud-car">
+                    <div class="single-item">
+                        <img src="img/wtw/2009-3.png" alt="">
+                        <p>Twitter TF-IDF 03-2009 - 06-2009</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2009-6.png" alt="">
+                        <p>Twitter TF-IDF 06-2009 - 09-2009</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2009-9.png" alt="">
+                        <p>Twitter TF-IDF 09-2009 - 12-2009</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2009-12.png" alt="">
+                        <p>Twitter TF-IDF 12-2009 - 03-2010</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2010-3.png" alt="">
+                        <p>Twitter TF-IDF 03-2010 - 06-2010</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2010-6.png" alt="">
+                        <p>Twitter TF-IDF 06-2010 - 09-2010</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2010-9.png" alt="">
+                        <p>Twitter TF-IDF 09-2010 - 12-2010</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2010-12.png" alt="">
+                        <p>Twitter TF-IDF 12-2010 - 03-2011</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2011-3.png" alt="">
+                        <p>Twitter TF-IDF 03-2011 - 06-2011</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2011-6.png" alt="">
+                        <p>Twitter TF-IDF 06-2011 - 09-2011</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2011-9.png" alt="">
+                        <p>Twitter TF-IDF 09-2011 - 12-2011</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2011-12.png" alt="">
+                        <p>Twitter TF-IDF 12-2011 - 03-2012</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2012-3.png" alt="">
+                        <p>Twitter TF-IDF 03-2012 - 06-2012</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2012-6.png" alt="">
+                        <p>Twitter TF-IDF 06-2012 - 09-2012</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2012-9.png" alt="">
+                        <p>Twitter TF-IDF 09-2012 - 12-2012</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2012-12.png" alt="">
+                        <p>Twitter TF-IDF 12-2012 - 03-2013</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2013-3.png" alt="">
+                        <p>Twitter TF-IDF 03-2013 - 06-2013</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2013-6.png" alt="">
+                        <p>Twitter TF-IDF 06-2013 - 09-2013</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2013-9.png" alt="">
+                        <p>Twitter TF-IDF 09-2013 - 12-2013</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2013-12.png" alt="">
+                        <p>Twitter TF-IDF 12-2013 - 03-2014</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2014-3.png" alt="">
+                        <p>Twitter TF-IDF 03-2014 - 06-2014</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2014-6.png" alt="">
+                        <p>Twitter TF-IDF 06-2014 - 09-2014</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2014-9.png" alt="">
+                        <p>Twitter TF-IDF 09-2014 - 12-2014</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2014-12.png" alt="">
+                        <p>Twitter TF-IDF 12-2014 - 03-2015</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2015-3.png" alt="">
+                        <p>Twitter TF-IDF 03-2015 - 06-2015</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2015-6.png" alt="">
+                        <p>Twitter TF-IDF 06-2015 - 09-2015</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2015-9.png" alt="">
+                        <p>Twitter TF-IDF 09-2015 - 12-2015</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2015-12.png" alt="">
+                        <p>Twitter TF-IDF 12-2015 - 03-2016</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2016-3.png" alt="">
+                        <p>Twitter TF-IDF 03-2016 - 06-2016</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2016-6.png" alt="">
+                        <p>Twitter TF-IDF 06-2016 - 09-2016</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2016-9.png" alt="">
+                        <p>Twitter TF-IDF 09-2016 - 12-2016</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wtw/2016-12.png" alt="">
+                        <p>Twitter TF-IDF Most current</p>
+                    </div>
+                </div>
+                <br><br>
+
+                <p>Notice that quite a lot of important events can be identified in the important terms from the tweets. Some examples would be:
+                <ul>
+                    <li>
+                        <p>     - Conflicts &amp; Wars (e.g. Libya, Ukraine)</p>
+                    </li>
+                    <li>
+                        <p>     - Elections (KV, FV, EU)</p>
+                    </li>
+                    <li>
+                        <p>     - Scandals (e.g. tax havens, information hiding, etc.)</p>
+                    </li>
+                </ul></p>
+
+                <h2>How about in the parliament?</h2>
+                <p>Similarly, we can look at the most important terms from the meetings within the Danish parliament throughout the last years.</p>
+            
+                <div class="cloud-car">
+                    <div class="single-item">
+                        <img src="img/wft/2010-10.png" alt="">
+                        <p>Folketinget TF-IDF 10-2010 - 01-2011</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wft/2011-1.png" alt="">
+                        <p>Folketinget TF-IDF 01-2011 - 04-2011</p>
+                    </div>
+                    <div class="single-item">
+                        <img src="img/wft/2011-4.png" alt="">
+                        <p>Folketinget TF-IDF 04-2011 - 07-2011</p>
+                    </div>
+                </div>
+
             </div>
         </section>
         </section>
@@ -465,11 +644,32 @@
 <script>
 $(document).ready(function(){
   $('.img-car').slick({
+    dots: true,
+  customPaging: function(slick,index) {
+    var parties = ["Å", "DF", "Ø","C","LA","B","A","SF","V"];
+        return '<button>' + (parties[index]) + '</button>';
+    }
+  });
+});</script>
 
+<script>
+$(document).ready(function(){
+  $('.plot-car').slick({
+    dots: true
   });
 });</script>
 <script type="text/javascript" src="js/slick.min.js"></script>
-
+<script>
+$(document).ready(function(){
+  $('.cloud-car').slick({
+    dots: true,
+    slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  });
+});</script>
+<script type="text/javascript" src="js/slick.min.js"></script>
 </body>
 <script src="js/graphs.js"></script>
 </html>
