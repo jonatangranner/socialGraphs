@@ -5,7 +5,7 @@ var svg = d3.select("svg"),
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(75))
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(50))
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
 
@@ -161,10 +161,24 @@ function get_party_color(party){
 
 
 function createGraph(nodeName, edgeName){
+
+  svg = d3.select("svg"),
+      width = +svg.attr("width"),
+      height = +svg.attr("height");
+
+  color = d3.scaleOrdinal(d3.schemeCategory20);
+
+  simulation = d3.forceSimulation()
+      .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(50))
+      .force("charge", d3.forceManyBody())
+      .force("center", d3.forceCenter(width / 2, height / 2));
+
   this.edgesFilesName = edgeName
   this.nodesFileName = nodeName
   d3.json("../assets/"+nodeName, function(error, nodes) {
     d3.json("../assets/"+edgeName, function(error, edges) {
+      //edges = edges.splice(0,600)
+      //var context = canvas.node().getContext("2d");
 
       if (error) throw error;
       var link = svg.append("g")
@@ -176,9 +190,8 @@ function createGraph(nodeName, edgeName){
           .attr("stroke","#FFFFFF")
           .attr("opacity","0.3")
 
-
       var node = svg.append("g")
-          .attr("class", "nodes")
+        .attr("class", "nodes")
         .selectAll("circle")
         .data(nodes)
         .enter().append("circle")
