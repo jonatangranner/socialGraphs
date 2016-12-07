@@ -10,7 +10,7 @@ var y = d3.scaleLinear()
   .range([400, 0]);
 
 var color = d3.scaleOrdinal()
-  .range(["#98abc5", "#8a89a6"]);
+  .range(["#98FFc5", "#8aFFa6"]);
 
 
 var svgbar = d3.select("#svg-bar")
@@ -120,16 +120,19 @@ d3.csv("assets/SentAvg.csv", function(error, data){
     .attr("class", "y axis")
     .call(yAxis)
     .append("text")
+    .style('fill','white')
     .attr("transform", "rotate(-90)")
     .attr("y", 6)
     .attr("dy", ".71em")
     .style("text-anchor", "end")
+    .style('fill','white')
     .text("Sentiment");
 
   var state = svgbar.selectAll(".state")
     .data(data)
     .enter().append("g")
     .attr("class", "state")
+    .style('fill','white')
     .attr("transform", function(d) {
       return "translate(" + x0(d.name) + ",0)";
     });
@@ -169,12 +172,14 @@ d3.csv("assets/SentAvg.csv", function(error, data){
     .attr("x", width - 18)
     .attr("width", 18)
     .attr("height", 18)
+    .style('fill','white')
     .style("fill", color);
 
   legend.append("text")
     .attr("x", width - 24)
     .attr("y", 9)
     .attr("dy", ".35em")
+    .style('fill','white')
     .style("text-anchor", "end")
     .text(function(d) {
       return d;

@@ -49,9 +49,6 @@
     window.onload = init();
 </script>
 </head>
-
-
-
 <body>
 
 <div id="wrapper">
@@ -71,6 +68,13 @@
             <a href="#network">Network</a>
             <a href="#terms">Terms</a>
         </nav>
+
+          <div class="ribbon-wrapper-green">
+            <div class="ribbon-green">
+              <a class="ba" href="https://github.com/jonatangranner/socialGraphs">&nbsp;&nbsp;&nbsp;&nbsp;View on GitHub</a>
+            </div>
+          </div>
+</div>​
     </div>
 </header><!-- /header -->
 
@@ -108,6 +112,24 @@
                 <img src="img/plots/sent-time.png" class="plot">
                 <p>The graphs seem to be quite well correlated. It should be noted that the method of calculating the sentiments was to add up positive and negative sentiment values of each word in a text. Averaging the blocks of text makes it more likely for longer text blocks to have extreme values (positive or negative), which is probably why the sentiment of the parliament is generally higher than on twitter.</p>
 
+                <h1>How are politicians sentiment in the parliament compared to their twitter sentiment?</h1>
+                <p>
+                  We sometimes experience that people behave different in real life compared to their online behaviour. Examining the sentiment of tweets from danish politicians
+                  and comparing it to the sentiment of when they are talking in the parliament meetings shows the average and standard deviation of each politicians sentiment both on
+                  twitter and in the meetings.
+                </p>
+                <div style="margin-bottom:25px; margin-left:440px; margin-top:50px">
+                    <p style="float:left">Average Sentiment</p>
+                    <label class="switch" style="margin-left: 10px">
+                      <input id="comBox" type="checkbox" onchange="nodes()">
+                      <div class="slider round" style="background-color:#2196F3"></div>
+                    </label>
+                    <p style="float:right;margin-right: 340px;">Standard Deviation Sentiment</p>
+                </div>
+                <div style="margin-left:170px">
+                  <svg id="svg-bar" style="padding-left:50px; margin-left:-0px" width="960" height="500"></svg>
+                </div>
+                <br>
                 <h1>How are emotions showing on Danish politicians' Twitter feeds?</h1>
                 <p>The sentiment averages of politicians own tweets (retweets not counted) was used as a basis for creating lists of top most positive tweets and top most negative tweets.<br>
                 Top 3 positive tweets:</p>
@@ -412,17 +434,7 @@
                 <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
                 <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
                 <!--<button onclick="nodes()">GG</button>-->
-                <div style="margin-bottom:25px">
-                    <p style="float:left">Average Sentiment</p>
-                    <label class="switch" style="margin-left: 10px">
-                      <input id="comBox" type="checkbox" onchange="nodes()">
-                      <div class="slider round" style="background-color:#2196F3"></div>
-                    </label>
-                    <p style="float:right;margin-right: 780px;">Standard Deviation Sentiment</p>
-                </div>
-                <div style="margin-left:0px">
-                  <svg id="svg-bar" style="padding-left:25px; margin-left:-0px" width="960" height="500"></svg>
-                </div>
+
             </div>
         </section>
         <section class="color" id="tweets">
@@ -651,7 +663,7 @@
 
                 <h2>How about in the parliament?</h2>
                 <p>Similarly, we can look at the most important terms from the meetings within the Danish parliament throughout the last years.</p>
-            
+
                 <div class="cloud-car">
                     <div class="single-item">
                         <img src="img/wft/2010-10.png" alt="">
@@ -666,7 +678,6 @@
                         <p>Folketinget TF-IDF 04-2011 - 07-2011</p>
                     </div>
                 </div>
-
             </div>
         </section>
         </section>
@@ -714,10 +725,7 @@ $(document).ready(function(){
   });
 });</script>
 <script type="text/javascript" src="js/slick.min.js"></script>
-<<<<<<< HEAD
-=======
 <script type="text/javascript" src="js/bar.js"></script>
 <script type="text/javascript" src="js/graphs.js"></script>
->>>>>>> e67bc83e66458e6f8cfd0ffdc68fbff888ee555e
 </body>
 </html>
