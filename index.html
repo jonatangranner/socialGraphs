@@ -9,7 +9,7 @@
 <meta name="description" content="" />
 
 <title>Networks in Danish Politics  |  Social Graphs 2016</title>
-    
+
 <!-- css -->
 <link href='https://fonts.googleapis.com/css?family=Ubuntu:300,400,700,400italic' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/switch.css" />
 <link rel="stylesheet" type="text/css" href="css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/bar.css"/>
 
 
 <!-- js -->
@@ -27,8 +28,8 @@
 <script src="js/quotes.js"></script>
 <script src="js/masonry.pkgd.min.js"></script>
 <script src="js/jquery.flexslider-min.js"></script>
-<script src="./node_modules/d3/build/d3.min.js"></script>
-<script src="./node_modules/d3-tip/index.js"></script>
+<script src="nodes_modules/d3/build/d3.min.js"></script>
+<script src="nodes_modules/d3-tip/index.js"></script>
 
 <script>
     function init() {
@@ -78,7 +79,7 @@
         <section id="one">
             <div class="container">
                 <h1 id="contenttitle">Contents</h1>
-                
+
                 <p class="contents">
                     <a href="#sentiments"><img src="img/smile.png"><br>
                     &rarr; Sentiment Analysis</a><br><br>
@@ -96,7 +97,7 @@
                 Recently, The Oxford Dictionaries announced that its Word of the Year 2016 is <b>post-truth</b>.<br>
                 </p>
                 <img src="img/woty.png" id="woty">
-                
+
                 <blockquote><p>‘relating to or denoting circumstances in which objective facts are less influential <br>in shaping public opinion than appeals to emotion and personal belief’</p>
                 <br><span>- 'Post-truth' according to The Oxford Dictionaries</span></blockquote>
                 <p>The frequent use of a word such as 'post-truth' indicates that people seem to think that politics are increasingly prefering emotions to fact. Pathos to logos. But is this true? We investigated how emotions are showing in the Danish parliament and on Danish politicians' Twitter feeds.</p>
@@ -152,7 +153,7 @@
                                 </ul>
                             </div>
                         </li>
-                        
+
                     </ul> <!-- cd-testimonials -->
 
                     <a href="#0" class="cd-see-all">See all</a>
@@ -200,7 +201,7 @@
                                 </ul>
                             </div>
                         </li>
-                        
+
                     </ul> <!-- cd-testimonials -->
 
                     <a href="#0" class="cd-see-all">See all</a>
@@ -402,14 +403,26 @@
                         <p>Venstre's hashtags (top tfidf as sizes)</p>
                     </div>
                 </div>
-                <p>The wordsclouds does capture phrases commonly associated with the parties. Examples are Alternativet, 
-                which tends to use hashtags such as #venligrevolution, #elbil, and #nypolitiskkultur, and Dansk Folkeparti, 
+                <p>The wordsclouds does capture phrases commonly associated with the parties. Examples are Alternativet,
+                which tends to use hashtags such as #venligrevolution, #elbil, and #nypolitiskkultur, and Dansk Folkeparti,
                 which include hashtags such as #meredkmindreeu, #grænsekontrol, and #sønderjylland among its defining hashtags.</p><br>
             </div>
             <div class="container" id="network">
                 <h1>How are politicians connection if we look at what they say?</h1>
                 <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
                 <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
+                <!--<button onclick="nodes()">GG</button>-->
+                <div style="margin-bottom:25px">
+                    <p style="float:left">Average Sentiment</p>
+                    <label class="switch" style="margin-left: 10px">
+                      <input id="comBox" type="checkbox" onchange="nodes()">
+                      <div class="slider round" style="background-color:#2196F3"></div>
+                    </label>
+                    <p style="float:right;margin-right: 780px;">Standard Deviation Sentiment</p>
+                </div>
+                <div style="margin-left:0px">
+                  <svg id="svg-bar" style="padding-left:25px; margin-left:-0px" width="960" height="500"></svg>
+                </div>
             </div>
         </section>
         <section class="color" id="tweets">
@@ -418,18 +431,26 @@
                 <p>Cupcake ipsum dolor sit amet lollipop. Macaroon candy cotton candy bear claw macaroon carrot cake pastry icing dessert. Cupcake pastry tart sesame snaps lollipop donut pie. Cookie apple pie toffee lemon drops jelly beans cheesecake sweet roll. Jelly-o soufflé donut candy canes wafer dragée sweet cheesecake. Macaroon caramels pie cookie gummi bears. Ice cream jelly-o toffee cookie gingerbread cookie. Soufflé fruitcake jelly-o jelly chupa chups jelly beans. Dragée marzipan pastry macaroon oat cake muffin soufflé topping liquorice. Jelly-o chocolate cake lollipop.</p>
                 <p>Sugar plum muffin cookie pastry oat cake icing candy canes chocolate. Gummi bears chupa chups fruitcake dessert jelly. Muffin cookie ice cream soufflé pastry lollipop gingerbread sweet. Unerdwear.com bonbon candy marzipan bonbon gummies chocolate cake gummi bears powder. Unerdwear.com tart halvah chocolate cake dragée liquorice. Sugar plum chocolate bar pastry liquorice dragée jelly powder. Jelly tootsie roll applicake caramels. Marzipan candy tootsie roll donut. Gummies ice cream macaroon applicake.</p>
                 <div>
-                  <svg width="800" height="600" style="float:left"></svg>
+                  <svg id="svg-graph" width="800" height="600" style="float:left"></svg>
                   <div style="margin: 0 auto; width: 400px; overflow:hidden; height:600px">
                     <div style="width:250px; display:block">
                       <p style="float:left">Community</p>
-                      <label class="switch" style="margin-left: 30px">
-                        <input type="checkbox" onchange="toggleCheckbox(this)">
-                        <div class="slider round"></div>
+                      <label class="switch" style="margin-left: 60px">
+                        <input id="comBox" type="checkbox" onchange="toggleCheckbox(this)">
+                        <div class="slider round" style="background-color:#ccc"></div>
                       </label>
-                      <p style="float:right">Party</p>
+                      <p style="float:right;margin-right: -8px;">Party</p>
                     </div>
-                    <div style="width:250px">
-                      <p style="margin-left:-84px; float:left">Node size</p>
+                    <div style="width:400px; display:block;">
+                      <p style="margin-left:-82px; float:left">Retweet network</p>
+                      <label class="switch" style="margin-left: 20px">
+                        <input type="checkbox" onchange="changeNetwork(this)">
+                        <div class="slider round"style="background-color:#ccc"></div>
+                      </label>
+                      <p style="float:right; margin-right:40px">Parliament meeting</p>
+                    </div>
+                    <div style="width:250px; height:50px">
+                      <p style="margin-left: -125px;margin-top:20px;float:left;">Node size</p>
 
                       <div class="dropdown" style="width:160px">
                         <button onclick="myFunction()" id="dropbtn" class="dropbtn">Static</button>
@@ -670,6 +691,10 @@ $(document).ready(function(){
   });
 });</script>
 <script type="text/javascript" src="js/slick.min.js"></script>
+<<<<<<< HEAD
+=======
+<script type="text/javascript" src="js/bar.js"></script>
+<script type="text/javascript" src="js/graphs.js"></script>
+>>>>>>> e67bc83e66458e6f8cfd0ffdc68fbff888ee555e
 </body>
-<script src="js/graphs.js"></script>
 </html>

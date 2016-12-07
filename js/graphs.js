@@ -1,17 +1,20 @@
-var svg = d3.select("svg"),
+var svg = d3.select("#svg-graph"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(75))
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(50))
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
 
+var nodesFileName = ""
+var edgesFilesName = ""
+
 function toggleCheckbox(element){
-  d3.json("../assets/nodes.json", function(error, nodes) {
-    d3.json("../assets/edges.json", function(error, edges) {
+  d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
+    d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
 
       if(element.checked){
         party_color()
@@ -24,8 +27,8 @@ function toggleCheckbox(element){
 
 function toggleInDegree(element){
 
-  d3.json("../assets/nodes.json", function(error, nodes) {
-    d3.json("../assets/edges.json", function(error, edges) {
+  d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
+    d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
 
         if(element.checked){
           svg.selectAll("circle")   // change the line
@@ -37,25 +40,35 @@ function toggleInDegree(element){
     });
   });
 }
+
+function changeNetwork(element){
+  svg.selectAll("g").remove()
+  document.getElementById("comBox").checked = false;
+  if(!element.checked){
+    createGraph("nodes.json","edges.json")
+  }else{
+    createGraph("nodesParliament.json","edgesParliament.json")
+  }
+  var btn = document.getElementById("dropbtn")
+  btn.innerText = "Static"
+}
 function community_color()
 {
       // Get the data again
-      d3.json("assets/nodes.json", function(error, nodes) {
-        d3.json("assets/edges.json", function(error, edges) {
-
-        // Make the changes
-            svg.selectAll("circle")   // change the line
-              .attr("fill", function(d) { return color(d.community); })
-            });
-      });
+      d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
+      d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
+      // Make the changes
+          svg.selectAll("circle")   // change the line
+            .attr("fill", function(d) { return color(d.community); })
+          });
+    });
 }
 
 function party_color()
 {
       // Get the data again
-      d3.json("assets/nodes.json", function(error, nodes) {
-        d3.json("assets/edges.json", function(error, edges) {
-
+      d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
+        d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
         // Make the changes
             svg.selectAll("circle")   // change the line
               .attr("fill", function(d) { return get_party_color(d.party); })
@@ -66,8 +79,8 @@ function party_color()
 
 function nodeSize(choice)
 {
-  d3.json("../assets/nodes.json", function(error, nodes) {
-    d3.json("../assets/edges.json", function(error, edges) {
+  d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
+    d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
 
       var size = 8
 
@@ -144,58 +157,76 @@ function get_party_color(party){
   }
 }
 
-d3.json("assets/nodes.json", function(error, nodes) {
-  d3.json("assets/edges.json", function(error, edges) {
+function createGraph(nodeName, edgeName){
 
-    if (error) throw error;
-    var link = svg.append("g")
-        .attr("class", "line")
-      .selectAll("line")
-      .data(edges)
-      .enter().append("line")
-        .attr("stroke-width", function(d) { return Math.sqrt(d.value); })
-        .attr("stroke","#FFFFFF")
-        .attr("opacity","0.3")
+  svg = d3.select("#svg-graph"),
+      width = +svg.attr("width"),
+      height = +svg.attr("height");
 
+  color = d3.scaleOrdinal(d3.schemeCategory20);
 
-    var node = svg.append("g")
+  simulation = d3.forceSimulation()
+      .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(50))
+      .force("charge", d3.forceManyBody())
+      .force("center", d3.forceCenter(width / 2, height / 2));
+
+  this.edgesFilesName = edgeName
+  this.nodesFileName = nodeName
+  d3.json("../assets/"+nodeName, function(error, nodes) {
+    d3.json("../assets/"+edgeName, function(error, edges) {
+      //edges = edges.splice(0,600)
+      //var context = canvas.node().getContext("2d");
+
+      if (error) throw error;
+      var link = svg.append("g")
+          .attr("class", "line")
+        .selectAll("line")
+        .data(edges)
+        .enter().append("line")
+          .attr("stroke-width", 1)
+          .attr("stroke","#FFFFFF")
+          //.attr("opacity","0.3")
+
+      var node = svg.append("g")
         .attr("class", "nodes")
-      .selectAll("circle")
-      .data(nodes)
-      .enter().append("circle")
-        .attr("r", function(d) { return 15 })
-        .attr("fill", function(d) { return color(d.community); })
-        .call(d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended));
+        .selectAll("circle")
+        .data(nodes)
+        .enter().append("circle")
+          .attr("r", function(d) { return 15 })
+          .attr("fill", function(d) { return color(d.community); });/*
+          .call(d3.drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended));*/
 
-    node.append("title")
-        .text(function(d) { return d.id; });
+      node.append("title")
+          .text(function(d) { return d.id; });
 
-    simulation
-        .nodes(nodes)
-        .on("tick", ticked);
+      simulation
+          .nodes(nodes)
+          .on("tick", ticked);
 
-    simulation.force("link")
-        .links(edges);
+      simulation.force("link")
+          .links(edges);
 
-    function ticked() {
-      link
-          .attr("x1", function(d) { return d.source.x; })
-          .attr("y1", function(d) { return d.source.y; })
-          .attr("x2", function(d) { return d.target.x; })
-          .attr("y2", function(d) { return d.target.y; });
+      function ticked() {
+        link
+            .attr("x1", function(d) { return d.source.x; })
+            .attr("y1", function(d) { return d.source.y; })
+            .attr("x2", function(d) { return d.target.x; })
+            .attr("y2", function(d) { return d.target.y; });
 
-      node
-          .attr("cx", function(d) { return d.x; })
-          .attr("cy", function(d) { return d.y; });
-    }
+        node
+            .attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; });
+      }
+    });
   });
-});
+}
+createGraph("nodes.json","edges.json")
 
 function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.9).restart();
+  if (!d3.event.active) simulation.alphaTarget(0.0).restart();
   d.fx = d.x;
   d.fy = d.y;
 }
