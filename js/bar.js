@@ -10,7 +10,7 @@ var y = d3.scaleLinear()
   .range([400, 0]);
 
 var color = d3.scaleOrdinal()
-  .range(["#98abc5", "#8a89a6"]);
+  .range(["#98FFc5", "#8aFFa6"]);
 
 
 var svgbar = d3.select("#svg-bar")
@@ -70,7 +70,7 @@ function nodes(){
 d3.csv("assets/SentAvg.csv", function(error, data){
 
   var verticalGuideScale = d3.scaleLinear()
-    .domain([-4, d3.max(data)])
+    .domain([d3.min(data), d3.max(data)])
     .range([400, 0])
 
   var yAxis = d3.axisLeft(y)
@@ -99,7 +99,7 @@ d3.csv("assets/SentAvg.csv", function(error, data){
   }));
 
   x1.domain(ageNames).range([5, x0.bandwidth()]);
-  y.domain([-4, d3.max(data, function(c) {
+  y.domain([-0.006, d3.max(data, function(c) {
     return d3.max(c.ages, function(d) {
       return d.value;
     });
@@ -120,16 +120,19 @@ d3.csv("assets/SentAvg.csv", function(error, data){
     .attr("class", "y axis")
     .call(yAxis)
     .append("text")
+    .style('fill','white')
     .attr("transform", "rotate(-90)")
     .attr("y", 6)
     .attr("dy", ".71em")
     .style("text-anchor", "end")
+    .style('fill','white')
     .text("Sentiment");
 
   var state = svgbar.selectAll(".state")
     .data(data)
     .enter().append("g")
     .attr("class", "state")
+    .style('fill','white')
     .attr("transform", function(d) {
       return "translate(" + x0(d.name) + ",0)";
     });
@@ -169,12 +172,14 @@ d3.csv("assets/SentAvg.csv", function(error, data){
     .attr("x", width - 18)
     .attr("width", 18)
     .attr("height", 18)
+    .style('fill','white')
     .style("fill", color);
 
   legend.append("text")
     .attr("x", width - 24)
     .attr("y", 9)
     .attr("dy", ".35em")
+    .style('fill','white')
     .style("text-anchor", "end")
     .text(function(d) {
       return d;

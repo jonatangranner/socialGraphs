@@ -58,6 +58,8 @@ function community_color()
       d3.json("../assets/"+this.nodesFileName, function(error, nodes) {
       d3.json("../assets/"+this.edgesFilesName, function(error, edges) {
       // Make the changes
+          svg.selectAll(".legend").remove()
+
           svg.selectAll("circle")   // change the line
             .attr("fill", function(d) { return color(d.community); })
           });
@@ -73,6 +75,38 @@ function party_color()
             svg.selectAll("circle")   // change the line
               .attr("fill", function(d) { return get_party_color(d.party); })
             });
+
+            var parties = []
+            var uniqueParties = []
+            for (var i = 0; i < nodes.length; i++) {
+              parties.push(nodes[i].party)
+            }
+            $.each(parties, function(i, el){
+                if($.inArray(el, uniqueParties) === -1) uniqueParties.push(el);
+            });
+
+            var legend = svg.selectAll(".legend")
+              .data(uniqueParties.slice().reverse())
+              .enter().append("g")
+              .attr("class", "legend")
+              .attr("transform", function(d, i) {
+                return "translate(0," + i * 20 + ")";
+              });
+
+            legend.append("rect")
+              .attr("x", width - 800)
+              .attr("width", 18)
+              .attr("height", 18)
+              .style("fill", function(d){ return get_party_color(d) });
+
+            legend.append("text")
+              .attr("x", width - 770)
+              .attr("y", 9)
+              .attr("dy", ".35em")
+              .style("text-anchor", "start")
+              .text(function(d) {
+                return d;
+              });
       });
 }
 
@@ -95,7 +129,13 @@ function nodeSize(choice)
         svg.selectAll("circle")
         .transition()
         .duration(2000)  // change the line
-          .attr("r", function(d) { return (d.outDegree)/(2.5)})
+          .attr("r", function(d) {
+            var factor = 2.5
+            if(nodes.length > 200){
+              factor = 7.5
+            }
+            return (d.outDegree)/(factor)
+          })
       }else if(choice=='Betweenes centrality')
       {
         svg.selectAll("circle")
@@ -185,7 +225,7 @@ function createGraph(nodeName, edgeName){
         .enter().append("line")
           .attr("stroke-width", 1)
           .attr("stroke","#FFFFFF")
-          //.attr("opacity","0.3")
+          .attr("opacity","0.3")
 
       var node = svg.append("g")
         .attr("class", "nodes")
@@ -193,11 +233,11 @@ function createGraph(nodeName, edgeName){
         .data(nodes)
         .enter().append("circle")
           .attr("r", function(d) { return 15 })
-          .attr("fill", function(d) { return color(d.community); });/*
+          .attr("fill", function(d) { return color(d.community); })
           .call(d3.drag()
               .on("start", dragstarted)
               .on("drag", dragged)
-              .on("end", dragended));*/
+              .on("end", dragended));
 
       node.append("title")
           .text(function(d) { return d.id; });
@@ -209,16 +249,31 @@ function createGraph(nodeName, edgeName){
       simulation.force("link")
           .links(edges);
 
-      function ticked() {
-        link
-            .attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
 
-        node
-            .attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
+      function getColor(p){
+        if(p=="V"){
+          return "blue"
+        }else{
+          return "black"
+        }
+      }
+
+      var ticks = 0
+      function ticked() {
+
+        ticks+=1
+        if(ticks%10 == 0)
+        {
+          link
+              .attr("x1", function(d) { return d.source.x; })
+              .attr("y1", function(d) { return d.source.y; })
+              .attr("x2", function(d) { return d.target.x; })
+              .attr("y2", function(d) { return d.target.y; });
+
+          node
+              .attr("cx", function(d) { return d.x; })
+              .attr("cy", function(d) { return d.y; });
+        }
       }
     });
   });
@@ -226,7 +281,7 @@ function createGraph(nodeName, edgeName){
 createGraph("nodes.json","edges.json")
 
 function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.0).restart();
+  if (!d3.event.active) simulation.alphaTarget(0.5).restart();
   d.fx = d.x;
   d.fy = d.y;
 }
